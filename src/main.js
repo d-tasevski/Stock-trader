@@ -1,8 +1,23 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.config.productionTip = false
+import routes from './routes';
+import App from './App.vue';
+
+Vue.config.productionTip = false;
+
+// Connect router to the Vue instance, so that we can access router methods and helpers
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+	// disables hashtag in urls
+	mode: 'history',
+	// Instantiate routes
+	routes,
+});
 
 new Vue({
-  render: h => h(App)
-}).$mount('#app')
+	render: h => h(App),
+	// Connect router to app
+	router,
+}).$mount('#app');
