@@ -12,18 +12,18 @@
 					<a class="nav-link">Stocks</a>
 				</router-link>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<ul class="nav navbar-nav navbar-right" @click="toggleDropdown">
+				<li class="dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Save & Load
 						<span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<li>
-							<a href="#">Save Data</a>
+					<ul class="dropdown-menu bg-dark" :class="{'open-dropdown': isDropdownOpen}" aria-labelledby="navbarDropdownMenuLink" v-if="isDropdownOpen">
+						<li class="list-item">
+							<a class="nav-link pl-2" href="#" @click="saveData">Save Data</a>
 						</li>
 						<li>
-							<a href="#">Load Data</a>
+							<a class="nav-link pl-2" href="#" @click="loadData">Load Data</a>
 						</li>
 					</ul>
 				</li>
@@ -41,17 +41,39 @@
 import { mapActions } from 'vuex';
 
 export default {
+	data(){
+		return {
+			isDropdownOpen: false
+		}
+	},
 	computed: {
 		funds(){
 			return this.$store.getters.funds;
 		}
 	},
 	methods: {
-		...mapActions([
-			'randomizeStocks',
-		]),
+		...mapActions({
+			randomizeStocks: 'randomizeStocks',
+			fetchData: 'loadData'
+			
+		}),
 		endDay(){
 			this.randomizeStocks();
+		},
+		toggleDropdown(){
+			this.isDropdownOpen = !this.isDropdownOpen;
+		},
+		saveData(){
+			const data = {
+				funds: this.$store.getters.funds,
+				stockPortfolio: this.$store.getters.stockPortfolio, 
+				stocks: this.$store.getters.stocks
+			};
+
+			this.$http.put('data.json', data);
+		},
+		loadData(){
+			this.fetchData()
 		}
 	}
 }
@@ -60,5 +82,9 @@ export default {
 <style scoped>
 .pointer {
 	cursor: pointer;
+}
+
+.open-dropdown {
+	display: block;
 }
 </style>

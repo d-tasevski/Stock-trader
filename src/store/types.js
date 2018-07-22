@@ -4,4 +4,5 @@ export default {
 
 	BUY_STOCK: 'BUY_STOCK',
 	SELL_STOCK: 'SELL_STOCK',
+	SET_PORTFOLIO: 'SET_PORTFOLIO',
 };

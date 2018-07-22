@@ -3,7 +3,7 @@
 		<div class="card ">
 			<div class="card-header bg-info">
 				<h3 class="card-title">
-					{{ stock.name }}
+					<strong>{{ stock.name }} </strong>
 					<small>(Price: {{ stock.price }} )</small>
 				</h3>
 			</div>
