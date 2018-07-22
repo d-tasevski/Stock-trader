@@ -1,8 +1,5 @@
-# Project Title
-
-Stock Trader Simulator
-
-> Simple stock trading simulation app made with Vue, Vuex + Firebase :fire: :fire:
+# Stock Trader Simulator
+> Simple stock trading simulation app made with Vue, Vuex + Firebase && AWS :fire: :fire:
 
 ## Getting Started
 
