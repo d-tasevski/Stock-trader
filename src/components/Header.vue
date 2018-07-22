@@ -1,6 +1,7 @@
 <template>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<router-link to="/" class="navbar-brand">Stock Trader</router-link>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark pos-f-t">
+
+		<router-link to="/" class="navbar-brand">Stock Trader Simulator 3000</router-link>
 
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav">
@@ -29,17 +30,35 @@
 			</ul>
 		</div>
 
-		<strong class="navbar-text nav-link navbar-right">End Day</strong>
-		<strong class="navbar-text navbar-right">Funds: 1000 $</strong>
+		<strong class="navbar-text nav-link navbar-right pointer" @click="endDay">End Day</strong>
+		<strong class="navbar-text navbar-right">
+			<strong>Funds: {{ funds | currency }}</strong>
+		</strong>
 	</nav>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
-
+	computed: {
+		funds(){
+			return this.$store.getters.funds;
+		}
+	},
+	methods: {
+		...mapActions([
+			'randomizeStocks',
+		]),
+		endDay(){
+			this.randomizeStocks();
+		}
+	}
 }
 </script>
 
-<style>
+<style scoped>
+.pointer {
+	cursor: pointer;
+}
 </style>

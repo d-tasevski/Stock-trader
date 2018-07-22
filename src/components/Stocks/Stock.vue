@@ -9,10 +9,12 @@
 			</div>
 			<div class="card-body">
 				<div class="float-left">
-					<input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
+					<input type="number" min="0" class="form-control" :class="{ 'is-invalid': notEnoughFunds }" placeholder="Quantity" v-model="quantity">
 				</div>
 				<div class="float-right">
-					<button class="btn btn-success" @click="buyStock" :disabled="quantity <= 0 ">Buy</button>
+					<button class="btn btn-success" @click="buyStock" :disabled="notEnoughFunds || quantity <= 0 ">
+						{{ !notEnoughFunds ? 'Buy' : 'Insufficient funds'}}
+					</button>
 				</div>
 			</div>
 		</div>
@@ -28,20 +30,28 @@ export default {
 			quantity: 0
 		}
 	},
+	computed: {
+		notEnoughFunds(){
+			return this.quantity * this.stock.price > this.funds;
+		},
+		funds(){
+			return this.$store.getters.funds;
+		}
+	},
 	methods: {
 		buyStock(){
 			const order = {
 				stockId: this.stock.id,
 				stockPrice: this.stock.price,
 				quantity: this.quantity
-			}
-			// eslint-disable-next-line 
-			console.log(order);
+			};
+
+			this.$store.dispatch('buyStock', order);
 			this.quantity = 0;
 		}
 	} 
 }
 </script>
 
-<style>
+<style scoped>
 </style>

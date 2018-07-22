@@ -1,9 +1,11 @@
 <template>
 	<div class="container">
 		<app-header></app-header>
-		<div class="row mt-5">
+		<div class="row mt-2 app">
 			<div class="col-xs-12">
-				<router-view></router-view>
+				<transition name="slide">
+					<router-view></router-view>
+				</transition>
 			</div>
 		</div>
 	</div>
@@ -23,7 +25,15 @@ export default {
 </script>
 
 <style>
-body {
+.app {
 	padding: 3rem;
+}
+
+.container {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
+	max-width: 100%;
 }
 </style>

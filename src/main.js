@@ -7,6 +7,8 @@ import App from './App.vue';
 
 Vue.config.productionTip = false;
 
+Vue.filter('currency', value => `$ ${value.toLocaleString()}`);
+
 // Connect router to the Vue instance, so that we can access router methods and helpers
 Vue.use(VueRouter);
 
