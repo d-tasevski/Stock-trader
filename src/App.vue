@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<app-header></app-header>
-		<div class="row">
+		<div class="row mt-5">
 			<div class="col-xs-12">
 				<router-view></router-view>
 			</div>
@@ -15,6 +15,9 @@ import Header from './components/Header.vue'
 export default {
 	components: {
 		appHeader: Header
+	},
+	created(){
+		this.$store.dispatch('initStocks');
 	}
 }
 </script>

@@ -19,10 +19,10 @@
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<li>
-							<a href="#" @click="saveData">Save Data</a>
+							<a href="#">Save Data</a>
 						</li>
 						<li>
-							<a href="#" @click="loadData">Load Data</a>
+							<a href="#">Load Data</a>
 						</li>
 					</ul>
 				</li>

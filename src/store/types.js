@@ -1,0 +1,4 @@
+export default {
+	SET_STOCKS: 'SET_STOCKS',
+	RANDOM_STOCKS: 'RANDOM_STOCKS',
+};

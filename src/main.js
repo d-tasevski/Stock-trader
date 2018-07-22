@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from './store/store';
 import routes from './routes';
 import App from './App.vue';
 
@@ -20,4 +21,5 @@ new Vue({
 	render: h => h(App),
 	// Connect router to app
 	router,
+	store,
 }).$mount('#app');
